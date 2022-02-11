@@ -19,8 +19,8 @@ public class MouseFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 10));
-        transform.position = new Vector3(Mathf.Round(transform.position.x)-0.5f, Mathf.Round(transform.position.y) - 0.5f, transform.position.z);
+        transform.position = main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+        transform.position = new Vector3(Mathf.Round(transform.position.x) - 0.5f, Mathf.Round(transform.position.y) - 0.5f, transform.position.z);
 
         var cubeSize = transform.GetComponent<Collider2D>().bounds.size;
 
@@ -30,24 +30,24 @@ public class MouseFollow : MonoBehaviour
 
 
         // ToDo: Возможно оптимизировать или вынести
-        if (transform.position.x + cubeSize.x / 2 > max.x)
+        if (transform.position.x + cubeSize.x / 2 + 0.5f > max.x)
         {
-            transform.position = new Vector3 (max.x - cubeSize.x / 2, transform.position.y, transform.position.z);
+            transform.position = new Vector3(Mathf.Round(max.x - cubeSize.x / 2) - 0.5f, transform.position.y, transform.position.z);
         }
 
-        if ( transform.position.x - cubeSize.x / 2 < min.x)
+        if (transform.position.x - cubeSize.x / 2 - 0.5f < min.x)
         {
-            transform.position = new Vector3(min.x + cubeSize.x / 2, transform.position.y, transform.position.z);
+            transform.position = new Vector3(Mathf.Round(min.x + cubeSize.x / 2) + 0.5f, transform.position.y, transform.position.z);
         }
 
-        if (transform.position.y + cubeSize.y / 2 > max.y )
+        if (transform.position.y + cubeSize.y / 2 + 0.5f > max.y)
         {
-            transform.position = new Vector3(transform.position.x, max.y - cubeSize.y / 2, transform.position.z);
+            transform.position = new Vector3(transform.position.x, Mathf.Round(max.y - cubeSize.y / 2) - 0.5f, transform.position.z);
         }
 
-        if ( transform.position.y - cubeSize.y / 2 < min.y)
+        if (transform.position.y - cubeSize.y / 2 - 0.5f < min.y)
         {
-            transform.position = new Vector3(transform.position.x, min.y + cubeSize.y / 2, transform.position.z);
+            transform.position = new Vector3(transform.position.x, Mathf.Round(min.y + cubeSize.y / 2) + 0.5f, transform.position.z);
         }
 
     }
