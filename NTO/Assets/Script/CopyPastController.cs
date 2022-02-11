@@ -58,8 +58,8 @@ public class CopyPastController : MonoBehaviour
         GameObject newCube = GameObject.Instantiate(_copyObject);
         newCube.transform.GetComponent<BoxCollider2D>().enabled = true;
         newCube.transform.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-        newCube.transform.position = transform.position;
         newCube.transform.localScale = new Vector3(1, 1, 0);
+        newCube.transform.position = transform.position;
 
         Destroy(_copyObject);
     }
