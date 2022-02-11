@@ -20,7 +20,7 @@ public class MouseFollow : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 10));
-        transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), transform.position.z);
+        transform.position = new Vector3(Mathf.Round(transform.position.x)-0.5f, Mathf.Round(transform.position.y) - 0.5f, transform.position.z);
 
         var cubeSize = transform.GetComponent<Collider2D>().bounds.size;
 
@@ -52,12 +52,5 @@ public class MouseFollow : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            GameObject newCube = GameObject.Instantiate(collision.gameObject);
-            newCube.transform.position = new Vector3(0, 0, 0);
-        }
-    }
+
 }
