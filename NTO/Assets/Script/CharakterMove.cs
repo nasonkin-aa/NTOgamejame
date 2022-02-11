@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class CharakterMove : MonoBehaviour
 {
-    [SerializeField] float speed = 2f;
+    [SerializeField] float normalSpeed = 2f;
+    private float speed = 0f;
     private Rigidbody2D rb;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        speed = 0f;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        var moveVector = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveVector * speed, rb.velocity.y);
+        rb.velocity = new Vector2(speed, rb.velocity.y);
+    }
+
+    public void OnLeftButtonDown()
+    {
+        if (speed >= 0f)
+            speed -= normalSpeed;
+    }
+
+    public void OnRightButtonDown()
+    {
+        if (speed <= 0f)
+            speed += normalSpeed;
+    }
+
+    public void OnButtonUp()
+    {
+        speed = 0f;
     }
 }

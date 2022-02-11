@@ -4,14 +4,45 @@ using UnityEngine;
 
 public class CopyPastController : MonoBehaviour
 {
-    
     private GameObject _copyObject;
     public bool _isCopy = false;
     public bool _pastIsPosiple = true;
-    private void OnTriggerStay2D(Collider2D collision)
+    private bool _isEnter = false;
+    private Collider2D collisionOnEnter;
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    NewMethod(collision);
+
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 1f, 0.7f, 0.5f); 
+        if (collision.transform.tag == "Player")
+            return;
+
+        _isEnter = true;
+        collisionOnEnter = collision;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+
+        _isEnter = false;
+        collisionOnEnter = null;
+
+        transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 1f, 0.7f, 0.5f);
+
         _pastIsPosiple = true;
+    }
+
+    private void NewMethod(Collider2D collision)
+    {
+        transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 1f, 0.7f, 0.5f);
+        _pastIsPosiple = true;
+
+
+
+
 
         if (Input.GetKeyDown(KeyCode.Z) && !transform.parent.GetComponent<MainCPController>().Iscopy)
         {
@@ -24,13 +55,6 @@ public class CopyPastController : MonoBehaviour
             _pastIsPosiple = false;
             transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
-
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-         transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 1f, 0.7f, 0.5f);
-
-        _pastIsPosiple = true;
     }
 
     private void CopyObjects(Collider2D collision)
@@ -51,6 +75,9 @@ public class CopyPastController : MonoBehaviour
             PastObjects();
             _isCopy = false;
         }
+
+        if (_isEnter)
+            NewMethod(collisionOnEnter);
     }
 
     private void PastObjects()
