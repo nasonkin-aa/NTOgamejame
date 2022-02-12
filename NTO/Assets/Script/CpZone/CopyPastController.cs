@@ -40,12 +40,9 @@ public class CopyPastController : MonoBehaviour
         transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 1f, 0.7f, 0.5f);
         _pastIsPosiple = true;
 
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.Z) && !transform.parent.GetComponent<MainCPController>().Iscopy)
+        if (transform.parent.GetComponent<MainCPController>().CopyOn && !transform.parent.GetComponent<MainCPController>().Iscopy)
         {
+            Debug.Log("era");
             CopyObjects(collision);
             _isCopy = true;
         }
@@ -70,7 +67,7 @@ public class CopyPastController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && _copyObject != null && transform.parent.GetComponent<MainCPController>().PastIspisible)
+        if (transform.parent.GetComponent<MainCPController>().PastOn && _copyObject != null && transform.parent.GetComponent<MainCPController>().PastIspisible)
         {
             PastObjects();
             _isCopy = false;
