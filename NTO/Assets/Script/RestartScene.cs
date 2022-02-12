@@ -7,10 +7,9 @@ public class RestartScene : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+        
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        
         
     }
 }

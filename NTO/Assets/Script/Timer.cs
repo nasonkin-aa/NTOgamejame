@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            Debug.Log("dued");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         
     }
