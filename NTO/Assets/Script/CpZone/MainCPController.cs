@@ -15,21 +15,14 @@ public class MainCPController : MonoBehaviour
     public void Copy()
     {
         CopyOn = true;
-        if (Iscopy)
-        {
-
-            
-        }
+    
         StartCoroutine(Dilay());
     }
     public void Past()
     {
 
         PastOn = true;
-        if (PastIspisible)
-        {
-           
-        }
+   
         StartCoroutine(DilayPast());
     }
     private IEnumerator Dilay()
