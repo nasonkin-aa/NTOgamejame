@@ -50,7 +50,7 @@ public class CopyPastController : MonoBehaviour
         if (_isCopy)
         {
             _pastIsPosiple = false;
-            transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.4f, 0.3f, 0.5f);
         }
     }
 
@@ -59,7 +59,7 @@ public class CopyPastController : MonoBehaviour
         GameObject newCube = GameObject.Instantiate(collision.gameObject);
         _copyObject = newCube;
         newCube.transform.GetComponent<BoxCollider2D>().enabled = false;
-        newCube.transform.GetComponent<SpriteRenderer>().color = new Color(0.7f, 1f, 0.7f, 0.5f);
+        //newCube.transform.GetComponent<SpriteRenderer>().color = new Color(0.7f, 1f, 0.7f, 0.5f);
         newCube.transform.parent = transform;
         newCube.transform.localPosition = new Vector3(0, 0, 0);
         Debug.Log(_copyObject);

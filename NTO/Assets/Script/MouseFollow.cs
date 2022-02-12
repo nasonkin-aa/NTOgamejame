@@ -23,13 +23,14 @@ public class MouseFollow : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         if (!_isWindowActive)
             return;
 
+        
         transform.position = main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-        transform.position = new Vector3(Mathf.Round(transform.position.x) - 0.5f, Mathf.Round(transform.position.y) - 0.5f, transform.position.z);
+        transform.position = new Vector3(Mathf.Round(transform.position.x) - 0.5f, Mathf.Round(transform.position.y) - 0.5f, -1);
         button.position = transform.position;
 
         var cubeSize = transform.GetComponent<Collider2D>().bounds.size;
@@ -37,7 +38,6 @@ public class MouseFollow : MonoBehaviour
         // ToDo: Возможно точки стоит обновлять не здесь
         min = main.ViewportToWorldPoint(new Vector2(0, 0));
         max = main.ViewportToWorldPoint(new Vector2(1, 1));
-
 
         // ToDo: Возможно оптимизировать или вынести
         if (transform.position.x + cubeSize.x / 2 + 0.5f > max.x)
