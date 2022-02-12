@@ -21,12 +21,14 @@ public class CharakterMove : MonoBehaviour
 
     public void OnLeftButtonDown()
     {
+        transform.rotation = new Quaternion(0,180f,0,0);
         if (speed >= 0f)
             speed -= normalSpeed;
     }
 
     public void OnRightButtonDown()
     {
+        transform.rotation = new Quaternion(0, 0, 0, 1);
         if (speed <= 0f)
             speed += normalSpeed;
     }
